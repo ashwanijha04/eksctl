@@ -125,11 +125,6 @@ func (e *VPCEndpointResourceSet) hasEndpoint(endpoint string) bool {
 
 // BuildVPCEndpointServices builds a slice of VPCEndpointServiceDetails for the specified endpoint names
 
-/******************TODO: **********************
-
-  - Fix the prefix for Chinese regions
-
-******************************************/
 
 
 func BuildVPCEndpointServices(ec2API ec2iface.EC2API, region string, endpoints []string) ([]VPCEndpointServiceDetails, error) {
@@ -138,7 +133,7 @@ func BuildVPCEndpointServices(ec2API ec2iface.EC2API, region string, endpoints [
 	
 	// cn.com.amazonaws.cn-north-1.ecr.api
 	
-	if(region=="cn-north-1" || region=="cn-northwest-1"){
+	if(region[0]=="c" && region[1]=="n"){
 			serviceRegionPrefix := fmt.Sprintf("cn.com.amazonaws.%s.", region)
 	}else{
 			serviceRegionPrefix := fmt.Sprintf("com.amazonaws.%s.", region)
